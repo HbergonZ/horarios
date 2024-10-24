@@ -23,7 +23,7 @@
         <li class="nav-item nav-category">
           <span class="nav-link">Cadastros</span>
         </li>
-        <li class="nav-item">
+        <li class="nav-item menu-items">
           <a class="nav-link" href="<?php echo base_url('sys/home'); ?>">
             <span class="menu-icon">
               <i class="mdi mdi-home"></i>
@@ -31,64 +31,64 @@
             <span class="menu-title">Página inicial</span>
           </a>
         </li>
-        <li class="nav-item">
-        <a class="nav-link" href="<?php echo base_url('sys/professor'); ?>">
+        <li class="nav-item menu-items">
+          <a class="nav-link" href="<?php echo base_url('sys/professor'); ?>">
             <span class="menu-icon">
               <i class="mdi mdi-account"></i>
             </span>
             <span class="menu-title">Professores</span>
           </a>
         </li>
-        <li class="nav-item">
-        <a class="nav-link" href="<?php echo base_url('sys/em-construcao'); ?>">
+        <li class="nav-item menu-items">
+          <a class="nav-link" href="<?php echo base_url('sys/em-construcao'); ?>">
             <span class="menu-icon">
               <i class="mdi mdi-school"></i>
             </span>
             <span class="menu-title">Cursos</span>
           </a>
         </li>
-        <li class="nav-item">
-        <a class="nav-link" href="<?php echo base_url('sys/em-construcao'); ?>">
+        <li class="nav-item menu-items">
+          <a class="nav-link" href="<?php echo base_url('sys/em-construcao'); ?>">
             <span class="menu-icon">
               <i class="mdi mdi-book-open-variant"></i>
             </span>
             <span class="menu-title">Disciplinas</span>
           </a>
         </li>
-        <li class="nav-item">
-        <a class="nav-link" href="<?php echo base_url('sys/em-construcao'); ?>">
+        <li class="nav-item menu-items">
+          <a class="nav-link" href="<?php echo base_url('sys/em-construcao'); ?>">
             <span class="menu-icon">
               <i class="mdi mdi-notebook-check"></i>
             </span>
             <span class="menu-title">Matriz Curricular</span>
           </a>
         </li>
-        <li class="nav-item">
-        <a class="nav-link" href="<?php echo base_url('sys/em-construcao'); ?>">
+        <li class="nav-item menu-items">
+          <a class="nav-link" href="<?php echo base_url('sys/em-construcao'); ?>">
             <span class="menu-icon">
               <i class="mdi mdi-account-group"></i>
             </span>
             <span class="menu-title">Turmas</span>
           </a>
         </li>
-        <li class="nav-item">
-        <a class="nav-link" href="<?php echo base_url('sys/em-construcao'); ?>">
+        <li class="nav-item menu-items">
+          <a class="nav-link" href="<?php echo base_url('sys/em-construcao'); ?>">
             <span class="menu-icon">
               <i class="mdi mdi-cast-education"></i>
             </span>
             <span class="menu-title">Ambientes</span>
           </a>
         </li>
-        <li class="nav-item">
-        <a class="nav-link" href="<?php echo base_url('sys/em-construcao'); ?>">
+        <li class="nav-item menu-items">
+          <a class="nav-link" href="<?php echo base_url('sys/em-construcao'); ?>">
             <span class="menu-icon">
               <i class="mdi mdi-human-male-board"></i>
             </span>
             <span class="menu-title">Aulas</span>
           </a>
         </li>
-        <li class="nav-item">
-        <a class="nav-link" href="<?php echo base_url('sys/em-construcao'); ?>">
+        <li class="nav-item menu-items">
+          <a class="nav-link" href="<?php echo base_url('sys/em-construcao'); ?>">
             <span class="menu-icon">
               <i class="mdi mdi-clock-time-eight"></i>
             </span>
@@ -97,7 +97,7 @@
         </li>
 
         <li class="nav-item menu-items">
-          <a class="nav-link" data-bs-toggle="collapse" href="#ui-advanced" aria-expanded="false" aria-controls="ui-advanced">
+          <a class="nav-link" data-bs-toggle="collapse" aria-expanded="false" aria-controls="ui-advanced" href="#ui-advanced">
             <span class="menu-icon">
               <i class="mdi mdi-laptop"></i>
             </span>
@@ -209,8 +209,11 @@
             <li class="nav-item dropdown">
               <a class="nav-link" id="profileDropdown" href="#" data-bs-toggle="dropdown">
                 <div class="navbar-profile">
-                  <img class="img-xs rounded-circle" src="<?php echo base_url("assets/images/faces/face15.jpg"); ?>" alt="">
-                  <p class="mb-0 d-none d-sm-block navbar-profile-name">Henry Klein</p>
+                  <img class="img-xs rounded-circle" src="<?php echo base_url("assets/images/faces/user.jpg"); ?>" alt="">
+                  <p class="mb-0 d-none d-sm-block navbar-profile-name"><?php
+                                                                        $user = auth()->user();
+                                                                        echo $user ? $user->username : 'Usuário';
+                                                                        ?></p>
                   <i class="mdi mdi-menu-down d-none d-sm-block"></i>
                 </div>
               </a>
@@ -228,7 +231,7 @@
                   </div>
                 </a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item preview-item">
+                <a class="dropdown-item preview-item" href=" <?php echo base_url('/logout'); ?>">
                   <div class="preview-thumbnail">
                     <div class="preview-icon bg-dark rounded-circle">
                       <i class="mdi mdi-logout text-danger"></i>

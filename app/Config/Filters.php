@@ -72,6 +72,7 @@ class Filters extends BaseFilters
             // 'honeypot',
             'csrf', // Cross-Site Request Forgery | exceções caso necessário exemplo: => ['except' => ['api/record/save']]
             // 'invalidchars',
+            'session' => ['except' => ['login*', 'register', 'auth/a/*', 'logout']],
         ],
         'after' => [
             // 'honeypot',

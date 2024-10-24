@@ -21,10 +21,14 @@ $routes->post('/sys/professor/salvar', 'Professor::salvar');
 $routes->get('/sys/disciplina/cadastro', 'Disciplinas::cadastro');
 
 // Rotas importacao planilhas
-$routes->get('/sys/importacao', 'Importacao::index'); 
-$routes->post('/sys/importacao/importar', 'Importacao::importar_planilha'); 
+$routes->get('/sys/importacao', 'Importacao::index');
+$routes->post('/sys/importacao/importar', 'Importacao::importar_planilha');
 $routes->get('/sys/professor/confirmar-importacao', 'Professor::validarImportacao');
 $routes->get('/sys/professor/importar-professor', 'Professor::importarProfessor');
 
 //Rota área de trabalho
 $routes->get('/sys/professor/horarios', 'Professor::horarios');
+
+//Shield
+service('auth')->routes($routes);
+service('auth')->routes($routes, ['except' => ['login', 'register']]);

@@ -43,7 +43,7 @@ class Professor extends BaseController
         if ($professor->insert($dadosPost)) {
             //se deu certo, direciona pra lista de professores
             session()->setFlashdata('sucesso', 'Professor cadastrado com sucesso.');
-            return redirect()->to(uri: '/sys'); // Redireciona para a página de listagem
+            return redirect()->to(uri: '/sys/professor/listar'); // Redireciona para a página de listagem
             // return redirect()->to(uri: '/sys/professor?cadastrado');
         } else {
             //se deu errado, renderiza a view novamente mostrando os erros
