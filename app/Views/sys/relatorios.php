@@ -8,138 +8,126 @@
   </nav>
 </div>
 
-<div class="col-md-12 grid-margin stretch-card">
-  <div class="card">
-    <div class="card-body">
-      <h4 class="card-title">Filtros</h4>
+<div class="row">
+  <!-- Coluna dos Filtros (esquerda) -->
+  <div class="col-md-5">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">Filtros</h4>
 
-      <div class="row">
-        <div class="col-md-4">
-          <div class="form-group">
-            <label for="tipoRelatorio">Tipo de Relatório</label>
-            <select class="form-control select2-single" id="tipoRelatorio" name="tipoRelatorio">
-              <option value="">Selecione um tipo</option>
-              <option value="curso">Relatório por Curso</option>
-              <option value="professor">Relatório por Professor</option>
-              <option value="ambiente">Relatório por Ambiente</option>
-            </select>
+        <div class="form-group">
+          <label for="tipoRelatorio">Tipo de Relatório</label>
+          <select class="form-control select2-single" id="tipoRelatorio" name="tipoRelatorio">
+            <option value="">Selecione um tipo</option>
+            <option value="curso">Relatório por Curso</option>
+            <option value="professor">Relatório por Professor</option>
+            <option value="ambiente">Relatório por Ambiente</option>
+          </select>
+        </div>
+
+        <div id="filtrosDinamicos" class="mt-3">
+          <div class="alert alert-info mb-0">
+            Selecione um tipo de relatório para exibir os filtros correspondentes
           </div>
         </div>
-      </div>
 
-      <div id="filtrosDinamicos" class="mt-3">
-        <div class="alert alert-info mb-0">
-          Selecione um tipo de relatório para exibir os filtros correspondentes
+        <div class="form-group d-flex justify-content-end mt-3">
+          <button type="button" id="btnLimpar" class="btn btn-secondary me-2">
+            <i class="mdi mdi-filter-remove me-1"></i>Limpar Filtros
+          </button>
+          <button type="button" id="btnGerarVisualizacao" class="btn btn-primary">
+            <i class="mdi mdi-eye-outline me-1"></i>Gerar Visualização
+          </button>
         </div>
-      </div>
-
-      <div class="form-group d-flex justify-content-end mt-3">
-        <button type="button" id="btnLimpar" class="btn btn-secondary me-2">
-          <i class="mdi mdi-filter-remove me-1"></i>Limpar Filtros
-        </button>
-        <button type="button" id="btnGerarVisualizacao" class="btn btn-primary">
-          <i class="mdi mdi-eye-outline me-1"></i>Gerar Visualização
-        </button>
       </div>
     </div>
   </div>
-</div>
 
-<div class="col-md-12 grid-margin stretch-card" id="resultadosContainer" style="display: none;">
-  <div class="card">
-    <div class="card-body">
-      <div class="d-flex justify-content-between align-items-center mb-3">
-        <h4 class="card-title">Resultados</h4>
-        <button type="button" id="btnExportar" class="btn btn-success">
-          <i class="mdi mdi-file-export me-1"></i>Exportar PDF
-        </button>
-      </div>
+  <!-- Coluna dos Resultados-->
+  <div class="col-md-7">
+    <div class="card" id="resultadosContainer" style="display: none;">
+      <div class="card-body">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <h4 class="card-title">Resultados</h4>
+          <button type="button" id="btnExportar" class="btn btn-success">
+            <i class="mdi mdi-file-export me-1"></i>Exportar PDF
+          </button>
+        </div>
 
-      <div class="table-responsive">
-        <table class="table table-striped" id="tabelaResultados">
-          <thead>
-            <tr>
-              <th>Curso</th>
-              <th>Turma</th>
-              <th>Disciplina</th>
-              <th>Professor</th>
-              <th>Ambiente</th>
-              <th>Dia</th>
-              <th>Hora Início</th>
-              <th>Hora Fim</th>
-            </tr>
-          </thead>
-          <tbody>
-          </tbody>
-        </table>
+        <div class="table-responsive">
+          <table class="table table-striped" id="tabelaResultados">
+            <thead>
+              <tr>
+                <th>Curso</th>
+                <th>Turma</th>
+                <th>Disciplina</th>
+                <th>Professor</th>
+                <th>Ambiente</th>
+                <th>Dia</th>
+                <th>Hora Início</th>
+                <th>Hora Fim</th>
+              </tr>
+            </thead>
+            <tbody>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   </div>
 </div>
 
 <div style="display:none;">
+  <!-- Templates modificados para mostrar selects um abaixo do outro -->
   <div id="templateCurso">
-    <div class="row">
-      <div class="col-md-6 mb-3">
-        <div class="form-group">
-          <div class="form-check d-flex align-items-center mb-2" style="margin-left: 0.375rem;">
-            <input class="form-check-input mt-0" type="checkbox" id="checkTodosCursos">
-            <label class="form-check-label" for="checkTodosCursos">Todos os Cursos</label>
-          </div>
-          <select class="form-control select2-multiple" multiple id="filtroCurso" name="cursos[]">
-            <?php foreach ($cursos as $curso): ?>
-              <option value="<?= $curso['id'] ?>"><?= $curso['nome'] ?></option>
-            <?php endforeach; ?>
-          </select>
-        </div>
+    <div class="form-group mt-3">
+      <div class="form-check d-flex align-items-center mb-2">
+        <input class="form-check-input mt-0" type="checkbox" id="checkTodosCursos">
+        <label class="form-check-label" for="checkTodosCursos">Todos os Cursos</label>
       </div>
-      <div class="col-md-6 mb-3">
-        <div class="form-group">
-          <div class="form-check d-flex align-items-center mb-2" style="margin-left: 0.375rem;">
-            <input type="checkbox" class="form-check-input mt-0" id="checkTodasTurmas" disabled>
-            <label class="form-check-label" for="checkTodasTurmas">Todas as Turmas</label>
-          </div>
-          <select class="form-control select2-multiple" multiple id="filtroTurma" name="turmas[]" disabled>
-            <option disabled>Selecione um curso primeiro</option>
-          </select>
-        </div>
+      <select class="form-control select2-multiple" multiple id="filtroCurso" name="cursos[]">
+        <?php foreach ($cursos as $curso): ?>
+          <option value="<?= $curso['id'] ?>"><?= $curso['nome'] ?></option>
+        <?php endforeach; ?>
+      </select>
+    </div>
+
+    <div class="form-group mt-3">
+      <div class="form-check d-flex align-items-center mb-2">
+        <input type="checkbox" class="form-check-input mt-0" id="checkTodasTurmas" disabled>
+        <label class="form-check-label" for="checkTodasTurmas">Todas as Turmas</label>
       </div>
+      <select class="form-control select2-multiple" multiple id="filtroTurma" name="turmas[]" disabled>
+        <option disabled>Selecione um curso primeiro</option>
+      </select>
     </div>
   </div>
 
   <div id="templateProfessor">
-    <div class="row">
-      <div class="col-md-12 mb-3">
-        <div class="form-group">
-          <div class="form-check d-flex align-items-center mb-2" style="margin-left: 0.375rem;">
-            <input type="checkbox" class="form-check-input mt-0" id="checkTodosProfessores">
-            <label class="form-check-label" for="checkTodosProfessores">Todos os Professores</label>
-          </div>
-          <select class="form-control select2-multiple" multiple id="filtroProfessor" name="professores[]">
-            <?php foreach ($professores as $professor): ?>
-              <option value="<?= $professor['id'] ?>"><?= $professor['nome'] ?></option>
-            <?php endforeach; ?>
-          </select>
-        </div>
+    <div class="form-group mt-3">
+      <div class="form-check d-flex align-items-center mb-2">
+        <input type="checkbox" class="form-check-input mt-0" id="checkTodosProfessores">
+        <label class="form-check-label" for="checkTodosProfessores">Todos os Professores</label>
       </div>
+      <select class="form-control select2-multiple" multiple id="filtroProfessor" name="professores[]">
+        <?php foreach ($professores as $professor): ?>
+          <option value="<?= $professor['id'] ?>"><?= $professor['nome'] ?></option>
+        <?php endforeach; ?>
+      </select>
     </div>
   </div>
 
   <div id="templateAmbiente">
-    <div class="row">
-      <div class="col-md-12 mb-3">
-        <div class="form-group">
-          <div class="form-check d-flex align-items-center mb-2" style="margin-left: 0.375rem;">
-            <input type="checkbox" class="form-check-input mt-0" id="checkTodosAmbientes">
-            <label class="form-check-label" for="checkTodosAmbientes">Todos os Ambientes</label>
-          </div>
-          <select class="form-control select2-multiple" multiple id="filtroAmbiente" name="ambientes[]">
-            <?php foreach ($ambientes as $ambiente): ?>
-              <option value="<?= $ambiente['id'] ?>"><?= $ambiente['nome'] ?></option>
-            <?php endforeach; ?>
-          </select>
-        </div>
+    <div class="form-group mt-3">
+      <div class="form-check d-flex align-items-center mb-2">
+        <input type="checkbox" class="form-check-input mt-0" id="checkTodosAmbientes">
+        <label class="form-check-label" for="checkTodosAmbientes">Todos os Ambientes</label>
       </div>
+      <select class="form-control select2-multiple" multiple id="filtroAmbiente" name="ambientes[]">
+        <?php foreach ($ambientes as $ambiente): ?>
+          <option value="<?= $ambiente['id'] ?>"><?= $ambiente['nome'] ?></option>
+        <?php endforeach; ?>
+      </select>
     </div>
   </div>
 </div>
